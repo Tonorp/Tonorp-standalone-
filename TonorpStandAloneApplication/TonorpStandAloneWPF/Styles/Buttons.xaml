@@ -1,0 +1,793 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:attachedProperties="clr-namespace:TonorpStandAloneWPF.AttachedProperties"
+                    xmlns:valueConverter="clr-namespace:TonorpStandAloneWPF.ValueConverter">
+
+    <ResourceDictionary.MergedDictionaries>
+
+        <!-- Note that the order of placement is important-->
+
+        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Fonts.xaml" />
+        <ResourceDictionary Source="Texts.xaml" />
+
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Hoverless button-->
+    <Style TargetType="{x:Type Button}" x:Key="Hoverless">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--System Icon Button-->
+    <Style TargetType="{x:Type Button}" x:Key="SystemIconButton" BasedOn="{StaticResource Hoverless}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Padding" Value="10" />
+
+        <Style.Triggers>
+            <!--Mouse Enter event animation-->
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="{StaticResource OffWhite}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Background.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <!--Mouse Leave event animation-->
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="Transparent"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Background.Color"/>
+
+                        <ColorAnimation To="{StaticResource VeryLightGreen}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--window control Button-->
+    <Style TargetType="{x:Type Button}" x:Key="WindowControlButton" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Foreground" Value="{StaticResource VeryLightGreenBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
+        <Setter Property="LayoutTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1.5" />
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="{TemplateBinding Padding}" 
+                            Background="{TemplateBinding Background}">
+
+                        <TextBlock VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center"
+                                   Text="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <!--Mouse Enter event animation-->
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="{StaticResource OffWhite}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Background.Color"/>
+
+                        <ColorAnimation To="{StaticResource ForegroundMain}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <!--Mouse Leave event animation-->
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="Transparent"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Background.Color"/>
+
+                        <ColorAnimation To="{StaticResource VeryLightGreen}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Window Close Button-->
+    <Style TargetType="{x:Type Button}" x:Key="WindowCloseButton" BasedOn="{StaticResource WindowControlButton}">
+        <Style.Triggers>
+            <!--Mouse Enter event animation-->
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="{StaticResource ErrorRed}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="{StaticResource VeryLightGreen}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Dialog Window Close Button-->
+    <Style TargetType="{x:Type Button}" x:Key="WindowCloseButtonDialog" BasedOn="{StaticResource WindowCloseButton}">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}"/>
+        <Style.Triggers>
+            <!--Mouse Leave event animation-->
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="Transparent"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="{StaticResource ForegroundMain}"
+                                        Duration="0:0:0.2"
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Regular Button-->
+    <Style TargetType="{x:Type Button}" x:Key="RegularButton" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+        <Setter Property="Padding" Value="20 5" />
+        <Setter Property="Margin" Value="0 10" />
+        <Setter Property="BorderBrush" Value="{StaticResource DarkGreenBrush}" />
+
+        <Setter Property="attachedProperties:IsBusyProperty.Value" Value="False" />
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border"
+                            CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <TextBlock x:Name="InnerText" 
+                                       Text="{TemplateBinding Content}"
+                                       Visibility="{TemplateBinding attachedProperties:IsBusyProperty.Value, Converter={valueConverter:BooleanToVisibilityConverter}}"
+                                       Focusable="False"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                            <!--<TextBlock
+                                Style="{StaticResource SpinningText}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Visibility="{TemplateBinding attachedProperties:IsBusyProperty.Value, Converter={valueConverter:BooleanToVisibilityConverter},ConverterParameter=True}"/>-->
+
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource DarkGreen}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+
+                                    <ColorAnimation To="{StaticResource VeryLightGreen}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="InnerText"
+                                                    Storyboard.TargetProperty="Foreground.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+
+                                    <ColorAnimation To="{StaticResource DarkGreen}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="InnerText"
+                                                    Storyboard.TargetProperty="Foreground.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <!--Button Hover color Change without animation-->
+                        <!--<Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource WordBlueBrush}"/>
+                        </Trigger>-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <!--<Setter Property="Background" TargetName="border" Value="{StaticResource LightGrayBrush}" />-->
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource GreenGrayBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border"
+                                    Value="{StaticResource VeryLightGreenBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Delete File Button-->
+    <Style TargetType="{x:Type Button}" x:Key="DeleteFileBtn" BasedOn="{StaticResource RegularButton}">
+        <Setter Property="Foreground" Value="{StaticResource ErrorRedBrush}" />
+        <Setter Property="Padding" Value="10 0" />
+        <Setter Property="BorderBrush" Value="{StaticResource ErrorRedBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border"
+                            CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <TextBlock x:Name="InnerText" 
+                                       Text="{TemplateBinding Content}"
+                                       Visibility="{TemplateBinding Visibility}"
+                                       Focusable="False"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource ErrorRed}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+
+                                    <ColorAnimation To="{StaticResource SoftOffWhite}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="InnerText"
+                                                    Storyboard.TargetProperty="Foreground.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+
+                                    <ColorAnimation To="{StaticResource ErrorRed}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="InnerText"
+                                                    Storyboard.TargetProperty="Foreground.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource LightGrayBrush}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource LightGrayBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border"
+                                    Value="{StaticResource DarkErrorRedBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Sync File Button-->
+    <Style TargetType="{x:Type Button}" x:Key="SyncFileBtn" BasedOn="{StaticResource RegularButton}">
+        <Setter Property="Padding" Value="10 0" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border"
+                            CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <TextBlock x:Name="InnerText" 
+                                       Text="{TemplateBinding Content}"
+                                       Visibility="{TemplateBinding Visibility}"
+                                       Focusable="False"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource DarkGreen}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+
+                                    <ColorAnimation To="{StaticResource VeryLightGreen}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="InnerText"
+                                                    Storyboard.TargetProperty="Foreground.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+
+                                    <ColorAnimation To="{StaticResource DarkGreen}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="InnerText"
+                                                    Storyboard.TargetProperty="Foreground.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource LightGrayBrush}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource GreenGrayBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border"
+                                    Value="{StaticResource GreenGrayBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Text Button-->
+    <Style x:Key="TextButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource FunnyBlueBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+        <Setter Property="Padding" Value="50 10" />
+        <Setter Property="Margin" Value="0 10" />
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border"
+                            CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <TextBlock Text="{TemplateBinding Content}"
+                                   Focusable="False"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Margin="{TemplateBinding Padding}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource GreenBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource VeryLightGreenBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Icon Button-->
+    <Style x:Key="IconButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
+        <Setter Property="Padding" Value="30" />
+        <Setter Property="Margin" Value="0" />
+
+        <!--Bind the button height to the actual height of it parent container-->
+        <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Viewbox>
+                                <TextBlock Text="{TemplateBinding Content}"
+                                       Focusable="False"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Viewbox>
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource OffWhiteLight}" Duration="0:0:0.3"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <!--Button Hover color Change without animation-->
+                        <!--<Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource WordBlueBrush}"/>
+                        </Trigger>-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource VeryLightGrayBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource GreenGrayBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border"
+                                    Value="{StaticResource DarkGreenBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Search Button-->
+    <Style TargetType="{x:Type Button}" x:Key="SearchButton">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Background" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}"
+                            CornerRadius="5">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource Green}" Duration="0:0:0.3"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource DarkGreen}" Duration="0:0:0.3"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <!--Button pressed Trigger-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource GreenGrayBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource SoftDarkGreenBrush}" />
+                        </Trigger>
+
+                        <!--Button disabled Trigger-->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource ForegroundMainBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource ForegroundMainDarkBrush}" />
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Red Button-->
+    <Style TargetType="{x:Type Button}" x:Key="RedButton">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Background" Value="{StaticResource DarkErrorRedBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}"
+                            CornerRadius="5">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource ErrorRed}" Duration="0:0:0.3"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource DarkErrorRed}" Duration="0:0:0.3"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <!--Button press Trigger-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ForegroundMainBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource ForegroundMainDarkBrush}" />
+                        </Trigger>
+                        
+                        <!--Button disabled Trigger-->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource ForegroundMainBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource ForegroundMainDarkBrush}" />
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Login button-->
+    <Style TargetType="{x:Type Button}" x:Key="LoginButton">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Background" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource VeryLightGreenBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}"
+                            CornerRadius="0">
+
+                        <TextBlock Foreground="{TemplateBinding Foreground}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   Text="{TemplateBinding Content}"/>
+                        <!--<ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource Green}" Duration="0:0:0.3"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource DarkGreen}" Duration="0:0:0.3"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <!--Trigger-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LightGrayBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource ForegroundMainBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Icon Button with Corner radius-->
+    <Style TargetType="{x:Type Button}" x:Key="IconButtonCornered" BasedOn="{StaticResource SearchButton}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="btnBorder" 
+                            Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}"
+                            CornerRadius="5"
+                            BorderThickness="1"
+                            BorderBrush="Transparent">
+
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource OffWhiteLight}" Duration="0:0:0.2"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                    <ColorAnimation To="{StaticResource DarkGreen}" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="btnBorder"
+                                                    Storyboard.TargetProperty="BorderBrush.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.2"
+                                                    Storyboard.TargetProperty="Background.Color" />
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.2"
+                                                    Storyboard.TargetName="btnBorder"
+                                                    Storyboard.TargetProperty="BorderBrush.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <!--Button pressed Trigger-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LightGray}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource GreenGrayBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Landing page Button-->
+    <Style TargetType="{x:Type Button}" x:Key="SquareButton">
+        <Setter Property="Background" Value="{StaticResource SoftOffWhiteBrush}"/>
+        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+                    <Border x:Name="borderSquare" 
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5" 
+                            BorderBrush="{StaticResource GreenBrush}"
+                            BorderThickness="1">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--Button Hover color change animation-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ThicknessAnimation To="3" Duration="0:0:0.3"
+                                                    Storyboard.TargetName="borderSquare"
+                                                    Storyboard.TargetProperty="BorderThickness" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ThicknessAnimation To="1" Duration="0:0:0.3"
+                                                    Storyboard.TargetName="borderSquare"
+                                                    Storyboard.TargetProperty="BorderThickness" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <!--End of Button Hover color change animation-->
+
+                        <!--Button pressed Trigger-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="borderSquare" Value="{StaticResource VeryLightGrayBrush}" />
+                            <Setter Property="BorderBrush" TargetName="borderSquare" Value="{StaticResource ForegroundMainBrush}" />
+                        </Trigger>
+
+                        <!--Button disabled Trigger-->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="borderSquare" Value="{StaticResource VeryLightGrayBrush}" />
+                            <Setter Property="BorderBrush" TargetName="borderSquare" Value="{StaticResource LightGrayBrush}" />
+                            <Setter Property="Opacity" TargetName="borderSquare" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

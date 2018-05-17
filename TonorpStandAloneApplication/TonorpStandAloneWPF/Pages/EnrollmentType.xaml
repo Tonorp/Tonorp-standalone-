@@ -1,0 +1,60 @@
+﻿<local:BasePage x:Class="TonorpStandAloneWPF.Pages.EnrollmentType"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages"
+      mc:Ignorable="d" 
+      Height="300" Width="600"
+      Title="EnrollmentType">
+
+    <StackPanel Background="{StaticResource SoftOffWhiteBrush}">
+        
+        <!--Separator line-->
+        <Separator Height="1"
+                   Background="{StaticResource LightGrayBrush}"/>
+        
+        <!--Container for Buttons-->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            
+            <!--Staff Enrollment button-->
+            <Button  Margin="20"
+                     Style="{StaticResource SquareButton}"
+                     Cursor="Hand"
+                     Width="200"
+                     Height="200"
+                     Click="StaffEnrollment_Clicked">
+                <Grid>
+                    <Image Source="/Images/StaffEnrollmentIcon.png"
+                                   Height="100"/>
+
+                    <TextBlock Text="STAFF ENROLLMENT"
+                               Style="{StaticResource HeaderText}"
+                               VerticalAlignment="Bottom"
+                               Margin="0 0 0 20"/>
+                </Grid>
+
+            </Button>
+
+            <!--Student Enrollment button-->
+            <Button  Margin="20"
+                     Style="{StaticResource SquareButton}"
+                     Cursor="Hand"
+                     Width="200"
+                     Height="200"
+                     Click="StudentEnrollment_Clicked">
+                <Grid>
+                    <Image Source="/Images/StudentEnrollmentIcon.png"
+                                   Height="100"/>
+
+                    <TextBlock Text="STUDENT ENROLLMENT"
+                               Style="{StaticResource HeaderText}"
+                               VerticalAlignment="Bottom"
+                               Margin="0 0 0 20"/>
+                </Grid>
+
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</local:BasePage>

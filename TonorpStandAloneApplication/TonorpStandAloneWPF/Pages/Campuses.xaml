@@ -1,0 +1,140 @@
+﻿<pages:BasePage x:Class="TonorpStandAloneWPF.Pages.Campuses"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:pages="clr-namespace:TonorpStandAloneWPF.Pages"
+      xmlns:userControls="clr-namespace:TonorpStandAloneWPF.UserControls"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Width="1200" Height="550">
+
+    <StackPanel Orientation="Vertical"
+                Background="{StaticResource SoftOffWhiteBrush}">
+        <Grid Height="550">
+            <Grid.RowDefinitions>
+                <!--Search input field-->
+                <RowDefinition Height="Auto"/>
+                <!--List of Campuses-->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Search input field-->
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+                    <!--Campus Search Textbox-->
+                    <TextBox Tag="Enter Campus number"
+                             Margin="0 30 0 15"
+                             Height="30"
+                             Width="350"
+                             BorderThickness="1"
+                             HorizontalAlignment="Center"
+                             FontSize="{StaticResource FontSizeSmall}"/>
+
+                    <!--Search Button-->
+                    <Button Style="{StaticResource SearchButton}"
+                            Height="40" Width="40"
+                            Padding="3"
+                            Margin="7 0 0 -15 "
+                            Cursor="Hand">
+                        <Image Source="/Images/SearchIcon.png" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!--List of Campuses-->
+            <Border Grid.Row="1"
+                    BorderThickness="0 1"
+                    BorderBrush="{StaticResource VeryLightGrayBrush}"
+                    Padding="50 0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <!--Wrapper for list of Campuses-->
+                    <ItemsControl Name="CampusControl">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="5"
+                                    BorderThickness="1"
+                                    BorderBrush="{StaticResource LightGrayBrush}"
+                                    Width="250"
+                                    Padding="10"
+                                    Margin="10"
+                                    Background="{StaticResource SoftOffWhiteBrush}">
+
+                                    <StackPanel Orientation="Vertical">
+
+                                        <!--Client Logo-->
+                                        <!--<Ellipse Width="60"
+                                         Height="60"
+                                         HorizontalAlignment="Center"
+                                         Margin="0 0 0 10">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="/Images/LoggedInUser.png"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>-->
+
+                                        <Border Height="80"
+                                            Padding="5">
+                                            <Border Background="{StaticResource LightGreenBrush}"
+                                                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                                CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+
+                                                <!--Image Initials-->
+                                                <TextBlock Text="{Binding Initial}"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="{StaticResource FontSizeRegular}"
+                                                       FontFamily="{StaticResource LatoBold}"
+                                                       Foreground="{StaticResource OffWhiteLightBrush}"/>
+                                            </Border>
+                                        </Border>
+
+                                        <!--Client Alias-->
+                                        <TextBlock Text="{Binding Alias}"
+                                               HorizontalAlignment="Center"
+                                               FontSize="{StaticResource FontSizeRegular}"
+                                               FontFamily="{StaticResource LatoBold}"
+                                               Foreground="{StaticResource ForegroundMainBrush}"
+                                               Margin="0 0 0 10"
+                                               Padding="0"/>
+
+                                        <!--Client Fullname-->
+                                        <TextBlock Text="{Binding Name}"
+                                               HorizontalAlignment="Center"
+                                               FontSize="{StaticResource FontSizeSmall}"
+                                               FontFamily="{StaticResource LatoRegular}"
+                                               Foreground="{StaticResource ForegroundMainBrush}"
+                                               Margin="0 0 0 10"
+                                               TextWrapping="Wrap"/>
+
+                                        <!--Separator line-->
+                                        <Separator HorizontalAlignment="Stretch"
+                                               Background="{StaticResource VeryLightGrayBrush}"
+                                               Margin="5 0 5 10"
+                                               Height="1"/>
+
+                                        <!--Client Address-->
+                                        <TextBlock Text="{Binding Address}"
+                                               HorizontalAlignment="Center"
+                                               FontSize="{StaticResource FontSizeSmall}"
+                                               FontFamily="{StaticResource LatoRegular}"
+                                               Foreground="{StaticResource ForegroundMainBrush}"
+                                               Margin="0 0 0 10"
+                                               TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </StackPanel>
+</pages:BasePage>
+

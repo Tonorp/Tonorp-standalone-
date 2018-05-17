@@ -1,0 +1,2 @@
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAloneWPF\bin\x64\Debug\TonorpStandAloneWPF.exe.config
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAloneWPF\obj\x64\Debug\TonorpStandAloneWPF.csproj.ResolveComReference.cache

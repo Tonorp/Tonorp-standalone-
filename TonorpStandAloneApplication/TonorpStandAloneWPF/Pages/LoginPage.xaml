@@ -1,0 +1,130 @@
+﻿<local:BasePage x:Class="TonorpStandAloneWPF.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages"
+      xmlns:viewModel="clr-namespace:TonorpStandAlone.Core.ViewModel;assembly=TonorpStandAlone.Core"
+      xmlns:attachedProperties="clr-namespace:TonorpStandAloneWPF.AttachedProperties"
+      mc:Ignorable="d" 
+      Width="1000" Height="500">
+
+    <Grid Background="{StaticResource SoftOffWhiteBrush}">
+        <Grid Width="Auto">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/TonorpBg.png" 
+                            Stretch="None" Opacity="0.1"/>
+            </Grid.Background>
+            <!--Login main content white box-->
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        TextBlock.TextAlignment="Center"
+                        Margin="0 -70 0 0">
+
+                <!--Client's Logo-->
+                <Image Source="/Images/TeneceLogo.png" 
+                       Width="100"
+                       MaxHeight="100"
+                       HorizontalAlignment="Left"
+                       Margin="0 0 0 10"
+                       VerticalAlignment="Bottom"/>
+
+                <!--Username-->
+                <Border BorderThickness="1"
+                        BorderBrush="{StaticResource DarkGreenBrush}"
+                        Margin="0 0 0 10"
+                        Height="42">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Username Textbox-->
+                        <TextBox Text="{Binding Username}" 
+                                 Tag="Username or Reg. No"
+                                 Grid.Column="0"
+                                 Margin="0 0 0 15"
+                                 Height="35"
+                                 Width="290"
+                                 BorderThickness="0"
+                                 x:Name="TxtUsername"/>
+
+                        <!--Icon-->
+                        <Border Grid.Column="1" 
+                                Height="40"
+                                Padding="5 0 5 0"
+                                Background="{StaticResource SoftOffWhiteBrush}">
+
+                            <Image Source="/Images/PersonIcon.png"
+                               Stretch="Fill"
+                               Width="20"
+                               Height="20"
+                               VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Border>
+                
+                <!--Password-->
+                <Border BorderThickness="1"
+                        BorderBrush="{StaticResource DarkGreenBrush}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Password Textbox-->
+                        <PasswordBox x:Name="TxtPassword"
+                                     Tag="Password" 
+                                     Grid.Column="0"
+                                     Margin="0"
+                                     Height="40"
+                                     Width="290"
+                                     BorderThickness="0"
+                                     Background="{StaticResource SoftOffWhiteBrush}"/>
+
+                        <!--Icon-->
+                        <Border Grid.Column="1" 
+                                Height="40"
+                                Padding="5 0 5 0"
+                                Background="{StaticResource SoftOffWhiteBrush}">
+
+                            <Image Source="/Images/KeyIcon.png"
+                                   Stretch="Fill"
+                                   Width="20"
+                                   Height="20"
+                                   VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Border>
+                
+                <!--Forgot password-->
+                <Button Style="{StaticResource TextButton}"
+                        Padding="0" FontSize="{StaticResource FontSizeSmall}"
+                        Command="{Binding RegisterCommand}"
+                        Content="Forgot password?" 
+                        HorizontalAlignment="Left"
+                        Cursor="Hand"/>
+
+                <!--Login button-->
+                <Button Style="{StaticResource SearchButton}"
+                        Width="100"
+                        attachedProperties:IsBusyProperty.Value="{Binding LoginIsRunning}"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=Page}"
+                        Click="LoginButton_Clicked"
+                        HorizontalAlignment="Right" 
+                        Cursor="Hand"
+                        x:Name="BtnLogin">
+                    
+                    <TextBlock Text="LOGIN"
+                               Style="{StaticResource HeaderText}"
+                               Foreground="{StaticResource LightGreenBrush}"/>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</local:BasePage>
+

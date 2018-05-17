@@ -1,0 +1,182 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:TonorpStandAloneWPF">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilty"/>
+
+    <!--Window Default Look and feel-->
+    <Style TargetType="{x:Type Window}" x:Key="WindowDefault">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <!-- Outer border with the drop shadow margin -->
+                    <Border Padding="{Binding OuterMarginSize}">
+                        <!-- Main Window outline -->
+                        <Grid>
+                            <!-- Window border and drop shadow-->
+                            <Border Background="{StaticResource DarkGreenBrush}">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0" Opacity="0.2"/>
+                                </Border.Effect>
+                            </Border>
+                            <!--The Main window content-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <!--Title bar-->
+                                    <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=40}"/>
+
+                                    <!--Window Content-->
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Title bar-->
+                                <Grid Grid.Column="0" Panel.ZIndex="1">
+                                    <Grid.ColumnDefinitions>
+                                        <!--Icon-->
+                                        <ColumnDefinition Width="Auto"/>
+
+                                        <!--Page title-->
+                                        <ColumnDefinition Width="*"/>
+
+                                        <!--Windows buttons-->
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Icon-->
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <!--Tonorp Icon-->
+                                        <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
+                                            <Image Source="/Images/TonorpIcon.png"/>
+                                        </Button>
+
+                                        <!--Logout Icon-->
+                                        <Button Style="{StaticResource SystemIconButton}"
+                                                Command="{Binding LogoutCommand}"
+                                                Visibility="{Binding IsLogoutButtonVisible, Converter= {StaticResource BooleanToVisibilty}}">
+                                            <Image Source="/Images/LogoutIconLightGreen.png"/>
+                                        </Button>
+                                        
+                                        <!--Info Icon-->
+                                        <Button Style="{StaticResource SystemIconButton}"
+                                                Visibility="{Binding IsInfoButtonVisible, Converter= {StaticResource BooleanToVisibilty}}">
+                                            <Image Source="/Images/InfoIcon.png"/>
+                                        </Button>
+
+                                        <!--New Enrollment Icon-->
+                                        <Button Style="{StaticResource SystemIconButton}"
+                                                Command="{Binding NewEnrollmentCommand}"
+                                                Visibility="{Binding IsNewEnrollmentButtonVisible, Converter= {StaticResource BooleanToVisibilty}}">
+                                            <Image Source="/Images/NewEnrollmentIcon.png"/>
+                                        </Button>
+                                    </StackPanel>
+
+                                    <!--Page title-->
+                                    <TextBlock Text="{Binding PageTitle}"
+                                               Grid.Column="1"
+                                               Style="{StaticResource TitleText}"
+                                               HorizontalAlignment="Left"
+                                               Padding="20 0 0 0"/>
+
+                                    <!--Window Button-->
+                                    <StackPanel Background="Transparent" Grid.Column="2"  
+                                                Orientation="Horizontal"
+                                                HorizontalAlignment="Right"
+                                                Margin="0 0 10 0">
+
+                                        <!--Minimize button-->
+                                        <Button Command="{Binding MinimizeCommand}" Content="_" Style="{StaticResource WindowControlButton}"
+                                                FontWeight="Bold" Padding="8 8 8 13"/>
+
+                                        <!--Restore button-->
+                                        <Button Command="{Binding MaximizeCommand}" Content="[]" Style="{StaticResource WindowControlButton}"
+                                                FontSize="{StaticResource FontSizeSmall}"
+                                                Visibility="{Binding IsRestoreButtonVisible, Converter= {StaticResource BooleanToVisibilty}}"/>
+
+                                        <!--Close button-->
+                                        <Button Command="{Binding CloseCommand}" Content="x" Style="{StaticResource WindowCloseButton}"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--Page Content-->
+                                <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Window Dialogs Look and feel-->
+    <Style TargetType="{x:Type Window}" x:Key="WindowDialog" BasedOn="{StaticResource WindowDefault}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <!-- Outer border with the drop shadow margin -->
+                    <Border Padding="{Binding OuterMaginSizeThickness,FallbackValue=10}">
+                        <!-- Main Window outline -->
+                        <Grid>
+                            <!-- Window border and drop shadow-->
+                            <Border Background="{StaticResource SoftOffWhiteBrush}">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0" Opacity="0.2"/>
+                                </Border.Effect>
+                            </Border>
+
+                            <!--The Main window content-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <!--Title bar-->
+                                    <RowDefinition Height="50"/>
+
+                                    <!--Window Content-->
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Title bar-->
+                                <Grid Grid.Row="0" Panel.ZIndex="1">
+                                    <Grid.ColumnDefinitions>
+                                        <!--Page title-->
+                                        <ColumnDefinition Width="*"/>
+
+                                        <!--Windows buttons-->
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Page title-->
+                                    <TextBlock Text="{Binding PageTitle}"
+                                               Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               Foreground="{StaticResource LightGrayBrush}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="{StaticResource FontSizeSmall}"
+                                               FontFamily="{StaticResource LatoRegular}"
+                                               Margin="0 10 0 0"/>
+
+                                    <!--Window Close button-->
+                                    <Button x:Name="closeBtn"  
+                                            Command="{Binding CloseCommand}" 
+                                            Content="x" Style="{StaticResource WindowCloseButtonDialog}"
+                                            Grid.Column="1"  
+                                            HorizontalAlignment="Right"
+                                            Margin="0 0 10 0"/>
+
+                                </Grid>
+
+                                <!--Page Content-->
+                                <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

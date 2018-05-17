@@ -1,0 +1,249 @@
+﻿<local:BasePage x:Class="TonorpStandAloneWPF.Pages.NewEnrollment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages"
+      xmlns:logic="clr-namespace:TonorpStandAlone.Core.Logic;assembly=TonorpStandAlone.Core"
+      mc:Ignorable="d" 
+      Height="600" Width="1200"
+      Title="NewEnrollment">
+
+    <!--Main container-->
+    <Grid Background="{StaticResource SoftOffWhiteBrush}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Container for User information-->
+        <Grid Grid.Column="0" Height="600" 
+              Background="{StaticResource LightGrayWhiteBrush}">
+
+            <!--background image of the container-->
+            <Image Source="/Images/TonorpLogoAndTextUnder.png"
+                   Stretch="None" 
+                   Opacity="0.3"/>
+            <Grid>
+                <!--Current User information-->
+                <StackPanel Background="{StaticResource LightGrayWhiteBrush}">
+                    <!--Title-->
+                    <TextBlock Style="{StaticResource HeaderText}"
+                               Text="CURRENT USER"
+                               Padding="0 20"
+                               FontFamily="{StaticResource LatoBold}"/>
+
+                    <!--User passport-->
+                    <Ellipse Height="150" Width="150"
+                             Margin="0 20">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Images/LoggedInUser.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <!--Surname-->
+                    <TextBlock Text="{Binding LastName}"
+                               Style="{StaticResource HeaderText}"
+                               FontSize="{StaticResource FontSizeRegular}"
+                               Foreground="{StaticResource FunnyBlueBrush}"/>
+
+                    <!--Other names-->
+                    <TextBlock Text="{Binding FirstName}"
+                               Style="{StaticResource HeaderText}"
+                               FontSize="{StaticResource FontSizeRegular}"/>
+
+                    <!--Registration number-->
+                    <TextBlock Text="{Binding RegNo}"
+                               Style="{StaticResource HeaderText}"
+                               Foreground="{StaticResource FunnyBlueBrush}"/>
+
+                    <!--Department-->
+                    <TextBlock Text="{Binding Dept}"
+                               Style="{StaticResource HeaderText}"
+                               Foreground="{StaticResource FunnyBlueBrush}"
+                               Margin="0 20"/>
+
+                    <!--Level-->
+                    <TextBlock Text="200 Level"
+                               Style="{StaticResource HeaderText}"
+                               Foreground="{StaticResource FunnyBlueBrush}"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+        <!--Inner thumbnail components-->
+        <Grid Width="Auto"
+              Grid.Column="1"
+              Height="Auto"
+              Margin="50 30 50 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Container for Enrollment status label and change finger thumbnail button-->
+            <Grid Grid.Row="0">
+
+                <!--Enrollment status label-->
+                <TextBlock x:Name="EnrLabel"
+                           Text="Please select Finger thumnail to begin enrollment"
+                           HorizontalAlignment="Center"
+                           FontSize="15"
+                           FontFamily="{StaticResource LatoRegular}"
+                           Background="Transparent"
+                           Foreground="{StaticResource FunnyBlueBrush}"
+                           VerticalAlignment="Center"
+                           Padding="20 5"/>
+
+                <!--Icon for Changing finger thumnnails-->
+                <Button Style="{StaticResource IconButtonCornered}"
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        Padding="2"
+                        Margin="0 5 30 0"
+                        Click="ChangeThumbnails_Clicked"
+                        Cursor="Hand">
+
+                    <Image Source="/Images/ChangeFingerIcon.png"
+                           Height="30"
+                           Width="30"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                </Button>
+
+                <Button Visibility="Collapsed"
+                        x:Name="BtnShowTemplate"
+                        Click="BtnShowTemplate_Click"/>
+            </Grid>
+
+            <!--Main Container for list fingerprint thumbnails -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Finger thumbnail-->
+                <WrapPanel Name="WrapPanel" Orientation="Horizontal"
+                           Grid.Row="0"
+                           Margin="30 0 0 0"
+                           Width="420">
+
+                    <!--Template for Finger thumbnail-->
+                    <ItemsControl Name="FingerThumbnail">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Margin="10"
+                                        Style="{StaticResource SquareButton}"
+                                        Width="120" Height="150"
+                                        Cursor="Hand"
+                                        Click="BtnThumbnail_Clicked"
+                                        Tag="{Binding IndexNumber}">
+
+                                    <Grid>
+                                        <Image Source="{Binding ImgPath}"
+                                               Height="150"
+                                               Tag="{Binding IndexNumber}"/>
+
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource HeaderText}"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="0 0 0 5"
+                                                   Tag="{Binding IndexNumber}"/>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </WrapPanel>
+
+                <!--Large thumbnail for fingerprint capture-->
+                <Border Grid.Column="1" Margin="-100 10 10 10"
+                        CornerRadius="5"
+                        Width="200" Height="325"
+                        Background="{StaticResource VeryLightGrayBrush}"
+                        BorderThickness="1"
+                        BorderBrush="{StaticResource LightGrayBrush}">
+                    <Grid>
+                        <Image Source="/Images/HandAndDevice.png"
+                               Height="150"
+                               Name="ThumbnailLarge"/>
+                    </Grid>
+
+                </Border>
+            </Grid>
+
+            <!--Percentage counter and Done button-->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Cancel button-->
+                <Button Margin="83 -70 0 0"
+                        Style="{StaticResource RedButton}"
+                        Width="100" Height="50"
+                        Cursor="Hand"
+                        Click="CancelEnrollment_Clicked"
+                        Grid.Column="0"
+                        Name="BtnCancel"
+                        IsEnabled="False">
+
+                    <TextBlock Text="CANCEL"
+                               Style="{StaticResource HeaderText}"
+                               Foreground="{StaticResource VeryLightGrayBrush}"/>
+
+                </Button>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0 -70 83 0"
+                            Grid.Column="1">
+
+                    <!--Percentage counter Label-->
+                    <Border CornerRadius="5"
+                            Width="100"
+                            Height="50"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource LightGrayBrush}">
+
+                        <TextBlock Text="0%"
+                                   Name="LblPercentage"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource ForegroundMainBrush}"
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   FontSize="{StaticResource FontSizeLarge}"/>
+                    </Border>
+
+                    <!--Done button-->
+                    <Button Margin="10 0 0 0"
+                            Style="{StaticResource SearchButton}"
+                            Width="100" Height="50"
+                            Cursor="Hand"
+                            Click="EnrollmentDone_Clicked"
+                            Name="BtnDone">
+
+                        <TextBlock Text="DONE"
+                                   Style="{StaticResource HeaderText}"
+                                   Foreground="{StaticResource LightGreenBrush}"/>
+
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</local:BasePage>

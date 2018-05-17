@@ -1,0 +1,209 @@
+﻿<local:BasePage x:Class="TonorpStandAloneWPF.Pages.ChangeFingers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages"
+      Height="600" Width="1000">
+
+    <!--Main Container-->
+    <Border Background="{StaticResource SoftOffWhiteBrush}"
+            Padding="50 0 50 10"
+            BorderThickness="0 1 0 0"
+            BorderBrush="{StaticResource LightGrayBrush}">
+
+        <!--Container-->
+        <StackPanel Orientation="Vertical">
+
+            <TextBlock Text="Select desired fingers"
+                       Style="{StaticResource HeaderText}"
+                       Margin="0 50 0 10"/>
+
+            <!--Container for finger thumbnails-->
+            <WrapPanel Orientation="Horizontal" Width="700"
+                                HorizontalAlignment="Center">
+                <!--Right thumb finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/RightThumbImg.png"
+                                       Height="150"/>
+
+                        <TextBlock Text="Right Thumb"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Right index finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/RightIndexImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Right Index"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Right middle finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/RightMiddleImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Right Middle"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Right Ring finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/RightRingImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Right Ring"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Right Pinky finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/RightPinkyImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Right Pinky"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Left thumb finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/LeftThumbImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Left Thumb"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Left index finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/LeftIndexImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Left Index"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Left middle finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/LeftMiddleImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Left Middle"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Left Ring finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/LeftRingImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Left Ring"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+
+                <!--Left Pinky finger thumbnail-->
+                <Button Margin="10"
+                                Style="{StaticResource SquareButton}"
+                                Width="120" Height="150"
+                                Cursor="Hand">
+                    <Grid>
+                        <Image Source="/Images/LeftPinkyImg.png"
+                                   Height="150"/>
+
+                        <TextBlock Text="Left Pinky"
+                                       Style="{StaticResource HeaderText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"/>
+                    </Grid>
+
+                </Button>
+            </WrapPanel>
+
+            <!--Send Request button-->
+            <Button Style="{StaticResource SearchButton}"
+                    Height="50" Width="150"
+                    Margin="0 30 110 0 "
+                    HorizontalAlignment="Right"
+                    Cursor="Hand">
+
+                <TextBlock Text="SEND REQUEST"
+                           Style="{StaticResource HeaderText}"
+                           Foreground="{StaticResource LightGreenBrush}"/>
+            </Button>
+        </StackPanel>
+    </Border>
+</local:BasePage>

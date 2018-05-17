@@ -1,0 +1,385 @@
+﻿<local:BasePage x:Class="TonorpStandAloneWPF.Pages.ContinueEnrollment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages"
+      mc:Ignorable="d" 
+      Height="550" Width="1200">
+
+    <!--Main Container-->
+    <Grid Background="{StaticResource SoftOffWhiteBrush}">
+        <Grid.RowDefinitions>
+            <!--Search input field-->
+            <RowDefinition Height="Auto"/>
+
+            <!--Table content-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Search input field and Enrollment button-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Search Record input field-->
+            <Grid Grid.Column="0"
+                  Grid.ColumnSpan="2">
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            x:Name="SearchPanel">
+
+                    <!--Campus Search Textbox-->
+                    <TextBox Tag="Search Record"
+                             Margin="0 30 0 15"
+                             Height="30"
+                             Width="350"
+                             Style="{StaticResource TextBoxDefault}"/>
+
+                    <!--Search Button-->
+                    <Button Style="{StaticResource SearchButton}"
+                            Height="40" Width="40"
+                            Padding="3"
+                            Margin="7 0 0 -15 "
+                            Cursor="Hand">
+                        <Image Source="/Images/SearchIcon.png" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!--New Enrollment button-->
+            <Button Grid.Column="1"
+                    Content="NEW ENROLLMENT"
+                    Height="30"
+                    Width="200"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource SyncFileBtn}"
+                    Margin="20 20 50 10"
+                    Cursor="Hand"
+                    Click="NewEnrollmentBtn_Clicked"/>
+
+        </Grid>
+
+        <!--Container for table and more info-->
+        <Grid Grid.Row="1"
+              Margin="50 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Table content area-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Table Header-->
+                <Border Grid.Row="0"
+                        BorderThickness="0 1"
+                        BorderBrush="{StaticResource VeryLightGrayBrush}">
+
+                    <Grid Background="Azure">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Serial number Column-->
+                        <TextBlock Grid.Column="0" Text="S/N"
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+                        <!--File name Column-->
+                        <TextBlock Grid.Column="1" Text="FILE NAME"
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+                        <!--Date Created Column-->
+                        <TextBlock Grid.Column="2" Text="DATE CREATED" 
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+                        <!--Time Created Column-->
+                        <TextBlock Grid.Column="3" Text="TIME CREATED" 
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+                    </Grid>
+                </Border>
+
+                <!--Table Items-->
+                <ListBox Grid.Row="1" 
+                          x:Name="ContEnrItems"  
+                          Background="Transparent"
+                          SelectionMode="Single"
+                         SelectionChanged="ContEnrItems_OnSelectionChanged"
+                          BorderThickness="0">
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Serial number Column-->
+                                <TextBlock Grid.Column="0" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding SerialNumber}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--File name Column-->
+                                <TextBlock Grid.Column="1" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding FileName}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--Date Created Column-->
+                                <TextBlock Grid.Column="2" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding DateCreated}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--Time Created Column-->
+                                <TextBlock Grid.Column="3" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding TimeCreated}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+                <!--Text to display if table record is empty-->
+                <TextBlock Grid.Row="1"
+                           Text="No more records to display!"
+                           Foreground="red"
+                           Style="{StaticResource HeaderText}"
+                           x:Name="RecordText"
+                           Margin="0 -200 0 0"
+                           Visibility="Collapsed"/>
+            </Grid>
+
+            <!--More info content area-->
+            <Border Grid.Column="1"
+                    Background="{StaticResource VeryLightGrayBrush}"
+                    BorderThickness="1"
+                    BorderBrush="{StaticResource LightGrayBrush}">
+                
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/TonorpLogoAndTextUnder.png"
+                                    Stretch="None"
+                                    Opacity="0.2"/>
+                    </Grid.Background>
+                    
+                    <StackPanel Orientation="Vertical"
+                                x:Name="MoreInfoPanel">
+
+                        <!--Header text for more info-->
+                        <TextBlock Style="{StaticResource HeaderText}"
+                               Text="MORE INFO"
+                               Padding="0 8"/>
+
+                        <!--Line separator-->
+                        <Separator Height="1"
+                               Background="{StaticResource LightGrayBrush}"/>
+
+                        <!--Campus logo and Campus name Panel-->
+                        <StackPanel Orientation="Horizontal">
+
+                            <!--Campus Logo-->
+                            <Ellipse Height="70" Width="70"
+                                 Margin="20 10 10 10">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Images/LoggedInUser.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <!--Campus name and Alias Container-->
+                            <StackPanel Orientation="Vertical">
+
+                                <!--Campus Alias-->
+                                <TextBlock Style="{StaticResource HeaderText}"
+                                       x:Name="TxtAlias"
+                                       HorizontalAlignment="Left"
+                                       Margin="10 28 0 0"
+                                       FontFamily="{StaticResource LatoBold}"/>
+
+                                <!--Campus Name-->
+                                <TextBlock x:Name="TxtCampName"
+                                       Style="{StaticResource HeaderText}"
+                                       HorizontalAlignment="Left"
+                                       Margin="10 2 0 0"
+                                       TextWrapping="Wrap"
+                                       Width="250"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!--Department Container-->
+                        <StackPanel Orientation="Vertical">
+
+                            <!--Department Title-->
+                            <TextBlock Style="{StaticResource HeaderText}"
+                                   Text="DEPARTMENT"
+                                   HorizontalAlignment="Left"
+                                   Margin="20 10 0 0"
+                                   Foreground="{StaticResource DarkGreenBrush}"
+                                   FontFamily="{StaticResource LatoBold}"/>
+
+                            <!--Department Name-->
+                            <TextBlock x:Name="TxtDept"
+                                   Style="{StaticResource HeaderText}"
+                                   HorizontalAlignment="Left"
+                                   Margin="20 2 0 0"
+                                   TextWrapping="Wrap"
+                                   Width="250"/>
+                        </StackPanel>
+
+                        <!--Level Container-->
+                        <StackPanel Orientation="Vertical">
+
+                            <!--Level Title-->
+                            <TextBlock Style="{StaticResource HeaderText}"
+                                   Text="LEVEL"
+                                   HorizontalAlignment="Left"
+                                   Margin="20 10 0 0"
+                                   Foreground="{StaticResource DarkGreenBrush}"
+                                   FontFamily="{StaticResource LatoBold}"/>
+
+                            <!--Level Name-->
+                            <TextBlock x:Name="TxtLevel"
+                                   Style="{StaticResource HeaderText}"
+                                   HorizontalAlignment="Left"
+                                   Margin="20 2 0 0"/>
+                        </StackPanel>
+
+                        <!--Record table Container-->
+                        <Border BorderThickness="0 1"
+                            BorderBrush="{StaticResource LightGrayBrush}"
+                            Margin="20 20 20 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Table Title section-->
+                                <StackPanel Orientation="Vertical"
+                                        Grid.Column="0">
+                                    <!--Total record Title-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           Text="TOTAL RECORD"
+                                           HorizontalAlignment="Left"
+                                           Padding="0 5 5 5"/>
+                                    <!--Separator-->
+                                    <Separator Height="1"
+                                           Background="{StaticResource LightGrayBrush}"/>
+                                    <!--Numbber of record Upload Title-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           Text="SUCCESSFUL UPLOAD"
+                                           HorizontalAlignment="Left"
+                                           Padding="0 5 5 5"/>
+                                    <!--Separator-->
+                                    <Separator Height="1"
+                                           Background="{StaticResource LightGrayBrush}"/>
+                                    <!--Number of record for upload Title-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           Text="NO. REMAINING"
+                                           HorizontalAlignment="Left"
+                                           Padding="0 5 5 5"/>
+                                    <!--Separator-->
+                                    <Separator Height="1"
+                                           Background="{StaticResource LightGrayBrush}"/>
+                                    <!--Number of record Without Template Title-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           Text="NO. WITHOUT TEMPLATE"
+                                           HorizontalAlignment="Left"
+                                           Padding="0 5 5 5"/>
+
+                                </StackPanel>
+
+                                <!--Table Value section-->
+                                <StackPanel Orientation="Vertical"
+                                        Grid.Column="1">
+                                    <!--Total record Value-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           x:Name="TxtTotalRecord"
+                                           HorizontalAlignment="Right"
+                                           Padding="5 5 0 5"/>
+                                    <!--Separator-->
+                                    <Separator Height="1"
+                                           Background="{StaticResource LightGrayBrush}"/>
+                                    <!--Number of record Upload Value-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           x:Name="TxtNoSucUploads"
+                                           HorizontalAlignment="Right"
+                                           Padding="5 5 0 5"/>
+                                    <!--Separator-->
+                                    <Separator Height="1"
+                                           Background="{StaticResource LightGrayBrush}"/>
+                                    <!--Number of record remaining for upload Value-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           x:Name="TxtNoRemaining"
+                                           HorizontalAlignment="Right"
+                                           Padding="5 5 0 5"/>
+                                    <!--Separator-->
+                                    <Separator Height="1"
+                                           Background="{StaticResource LightGrayBrush}"/>
+                                    <!--Number of record Without Template Value-->
+                                    <TextBlock Style="{StaticResource HeaderText}"
+                                           x:Name="TxtNoWithoutTemp"
+                                           HorizontalAlignment="Right"
+                                           Padding="5 5 0 5"/>
+
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!--Delete and Continue enrollment button Container-->
+                        <StackPanel Orientation="Horizontal">
+
+                            <!--Delete file button-->
+                            <Button Content="DELETE FILE"
+                                    Height="30"
+                                    Width="120"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource DeleteFileBtn}"
+                                    Margin="12 30 0 0"
+                                    Cursor="Hand"
+                                    Click="DeleteItem_Click"/>
+
+                            <!--Continue enrollment button-->
+                            <Button Content="CONTINUE ENROLLMENT"
+                                    Height="30"
+                                    Width="200"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource SyncFileBtn}"
+                                    Margin="20 30 50 0"
+                                    Cursor="Hand"
+                                    Click="contEnrBtn_Clicked"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</local:BasePage>

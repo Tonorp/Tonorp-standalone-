@@ -1,0 +1,36 @@
+[{
+  "Id": 1,
+  "Name": "Enugu State University of Science and Technology",
+  "Alias": "ESUT",
+  "Logo": "http://dummyimage.com/160x215.png/5fa2dd/ffffff",
+  "Address": "Agbani, opp Umueze Boys Sec. Sch.",
+  "DateAdded": "7/19/2017"
+}, {
+  "Id": 2,
+  "Name": "University of Nigeria Nsukka",
+  "Alias": "UNN",
+  "Logo": "http://dummyimage.com/100x128.png/dddddd/000000",
+  "Address": "Edinbour, Awkunanaw Enugu",
+  "DateAdded": "3/20/2017"
+}, {
+  "Id": 3,
+  "Name": "University of Nigeria Benin",
+  "Alias": "UNIBEN",
+  "Logo": "http://dummyimage.com/215x212.png/ff4444/ffffff",
+  "Address": "Benin city , New Benin",
+  "DateAdded": "1/7/2017"
+}, {
+  "Id": 4,
+  "Name": "Abia State University",
+  "Alias": "ABSU",
+  "Logo": "http://dummyimage.com/244x110.png/cc0000/ffffff",
+  "Address": "Uturu Okigwe , ngwa rd , off Shakakei",
+  "DateAdded": "1/26/2017"
+}, {
+  "Id": 5,
+  "Name": "Devcast",
+  "Alias": "Devcast",
+  "Logo": "http://dummyimage.com/108x176.png/cc0000/ffffff",
+  "Address": "Lake View",
+  "DateAdded": "8/12/2017"
+}]

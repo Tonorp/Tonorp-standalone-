@@ -1,0 +1,41 @@
+﻿<Window x:Class="TonorpStandAloneWPF.Pages.Dialogs.BaseWindowDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages.Dialogs"
+        xmlns:valueConverter="clr-namespace:TonorpStandAloneWPF.ValueConverter"
+        mc:Ignorable="d"
+        Icon="/Images/TonorpIconWhiteBg.png"
+        Title="BaseWindowDialog" 
+        MinHeight="300" MinWidth="300"
+        AllowsTransparency="True"
+        Style="{StaticResource WindowDialog}"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
+            CaptionHeight="{Binding TitleHeight}"
+            GlassFrameThickness="0"
+            CornerRadius="0"/>
+    </WindowChrome.WindowChrome>
+
+    <Border Background="{StaticResource SoftOffWhiteBrush}">
+        <Grid>
+
+            <!--background image-->
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/TonorpLogoAndTextUnder.png" Stretch="None" Opacity="0.5"/>
+            </Grid.Background>
+
+            <Frame x:Name="MainFrame" Content="{Binding CurrentPage,Converter={valueConverter:ApplicationPageValueConverter}}"
+                   Background="Transparent"
+                   ClipToBounds="True"
+                   NavigationUIVisibility="Hidden"/>
+
+        </Grid>
+    </Border>
+</Window>

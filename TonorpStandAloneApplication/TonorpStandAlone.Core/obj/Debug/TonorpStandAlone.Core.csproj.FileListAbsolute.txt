@@ -1,0 +1,9 @@
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\bin\Debug\TonorpStandAlone.Core.dll
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\bin\Debug\TonorpStandAlone.Core.pdb
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\bin\Debug\Newtonsoft.Json.dll
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\bin\Debug\PropertyChanged.dll
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\bin\Debug\Newtonsoft.Json.xml
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\bin\Debug\PropertyChanged.xml
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\obj\Debug\TonorpStandAlone.Core.csprojResolveAssemblyReference.cache
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\obj\Debug\TonorpStandAlone.Core.dll
+C:\Project\TonorpStandalone\Tonorp-standalone-\TonorpStandAloneApplication\TonorpStandAlone.Core\obj\Debug\TonorpStandAlone.Core.pdb

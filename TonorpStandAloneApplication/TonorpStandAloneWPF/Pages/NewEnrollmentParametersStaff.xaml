@@ -1,0 +1,43 @@
+﻿<local:BasePage x:Class="TonorpStandAloneWPF.Pages.NewEnrollmentParametersStaff"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages"
+      mc:Ignorable="d" 
+      Height="300" Width="600">
+
+    <StackPanel Background="{StaticResource SoftOffWhiteBrush}">
+
+        <!--Separator Line-->
+        <Separator Height="1"
+                   Background="{StaticResource LightGrayBrush}"/>
+
+        <!--Container for ComboBoxes and button-->
+        <StackPanel Margin="50 70 50 20">
+
+            <!--Select Campus ComboBox-->
+            <ComboBox IsEditable="True"
+                      Height="40"
+                      Width="500"
+                      Margin="0 0 0 10"
+                      DisplayMemberPath="Name"
+                      Text="Search / Select Campus"
+                      x:Name="CmbCampusStaff"/>
+
+            <!--Begin Enrollment button-->
+            <Button Margin="0 20 0 0"
+                    Style="{StaticResource SearchButton}"
+                    Width="200" Height="50"
+                    Cursor="Hand"
+                    HorizontalAlignment="Right"
+                    Click="BeginEnrollment_Clicked">
+
+                <TextBlock Text="BEGIN ENROLLMENT"
+                           Style="{StaticResource HeaderText}"
+                           Foreground="{StaticResource LightGreenBrush}"/>
+
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</local:BasePage>

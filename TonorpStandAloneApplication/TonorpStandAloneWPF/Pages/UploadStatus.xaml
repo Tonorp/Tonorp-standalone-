@@ -1,0 +1,228 @@
+﻿<local:BasePage x:Class="TonorpStandAloneWPF.Pages.UploadStatus"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TonorpStandAloneWPF.Pages"
+      mc:Ignorable="d" 
+      Height="550" Width="1200">
+
+    <!--Main Container-->
+    <Grid Background="{StaticResource SoftOffWhiteBrush}">
+        <Grid.RowDefinitions>
+            <!--Search input field-->
+            <RowDefinition Height="Auto"/>
+
+            <!--Table content-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Search input field With delete and sync button-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Search Record input field-->
+            <Grid Grid.Column="0"
+                  Grid.ColumnSpan="2">
+
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+
+                    <!--Campus Search Textbox-->
+                    <TextBox Tag="Search Record"
+                         Margin="0 30 0 15"
+                         Height="30"
+                         Width="350"
+                         BorderThickness="1"
+                         HorizontalAlignment="Center"
+                         FontSize="{StaticResource FontSizeSmall}"/>
+
+                    <!--Search Button-->
+                    <Button Style="{StaticResource SearchButton}"
+                        Height="40" Width="40"
+                        Padding="3"
+                        Margin="7 0 0 -15 "
+                        Cursor="Hand">
+                        <Image Source="/Images/SearchIcon.png" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal">
+                
+                <!--Delete file button-->
+                <Button Content="DELETE FILE"
+                        Height="30"
+                        Width="120"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource DeleteFileBtn}"
+                        Margin="0 20 0 0"
+                        Cursor="Hand"/>
+                
+                <!--Sync file button-->
+                <Button Content="SYNC FILE"
+                        Height="30"
+                        Width="120"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource SyncFileBtn}"
+                        Margin="20 20 50 0"
+                        Cursor="Hand"/>
+            </StackPanel>
+        </Grid>
+
+        <!--Container for table-->
+        <Grid Grid.Row="1"
+              Margin="50 0">
+
+            <!--Table content area-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Table Header-->
+                <Border Grid.Row="0"
+                        BorderThickness="0 1"
+                        BorderBrush="{StaticResource VeryLightGrayBrush}">
+
+                    <Grid Background="Azure">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Serial number Column-->
+                        <TextBlock Grid.Column="0" Text="S/N"
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+
+                        <!--File name Column-->
+                        <TextBlock Grid.Column="1" Text="FILE NAME"
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+
+                        <!--Date Created Column-->
+                        <TextBlock Grid.Column="2" Text="DATE CREATED" 
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+
+                        <!--Time Created Column-->
+                        <TextBlock Grid.Column="3" Text="TIME CREATED" 
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+
+                        <!--Total number of record Column-->
+                        <TextBlock Grid.Column="4" Text="RECORDS" 
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+
+                        <!--Number of uploaded record Column-->
+                        <TextBlock Grid.Column="5" Text="UPLOADED" 
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+
+                        <!--Number of records not uploaded Column-->
+                        <TextBlock Grid.Column="6" Text="REMAINING" 
+                               Margin="10"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource HeaderText}"
+                               FontFamily="{StaticResource LatoBold}"/>
+                    </Grid>
+                </Border>
+                <!--Table Items-->
+                <ListBox Grid.Row="1" x:Name="LvItems"  
+                          Background="Transparent"
+                          BorderThickness="0">
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Serial number Column-->
+                                <TextBlock Grid.Column="0" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding SerialNumber}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--File name Column-->
+                                <TextBlock Grid.Column="1" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding FileName}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--Date Created Column-->
+                                <TextBlock Grid.Column="2" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding DateCreated}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--Time Created Column-->
+                                <TextBlock Grid.Column="3" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding TimeCreated}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--Total number of record Column-->
+                                <TextBlock Grid.Column="4" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding NoOfRecord}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--Total number of uploaded record Column-->
+                                <TextBlock Grid.Column="5" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding NoUploaded}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+
+                                <!--Total number of record not uploaded Column-->
+                                <TextBlock Grid.Column="6" 
+                                           Style="{StaticResource HeaderText}" 
+                                           Text="{Binding NoRemaining}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="10"/>
+                            </Grid>
+                            <!--</Border>-->
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</local:BasePage>

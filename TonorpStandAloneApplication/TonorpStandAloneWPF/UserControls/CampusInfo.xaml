@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="TonorpStandAloneWPF.UserControls.CampusInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TonorpStandAloneWPF.UserControls"
+             mc:Ignorable="d" 
+             Height="280" Width="280">
+
+
+    <Border CornerRadius="5"
+            BorderThickness="1"
+            BorderBrush="{StaticResource LightGrayBrush}"
+            Width="250"
+            Padding="10"
+            Margin="10"
+            Background="{StaticResource SoftOffWhiteBrush}">
+
+        <StackPanel Orientation="Vertical">
+
+            <!--Client Logo-->
+            <!--<Ellipse Width="60"
+                 Height="60"
+                 HorizontalAlignment="Center"
+                 Margin="0 0 0 10">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/Images/LoggedInUser.png"/>
+                </Ellipse.Fill>
+            </Ellipse>-->
+
+            <Border Height="80"
+                    Padding="5">
+                <Border Background="{StaticResource LightGreenBrush}"
+                        Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                        CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+                   
+                    <!--Image Initials-->
+                    <TextBlock Text="{Binding Initial}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="{StaticResource FontSizeRegular}"
+                               FontFamily="{StaticResource LatoBold}"
+                               Foreground="{StaticResource OffWhiteLightBrush}"/>
+                </Border>
+            </Border>
+
+            <!--Client Alias-->
+            <TextBlock Text="{Binding Alias}"
+                       HorizontalAlignment="Center"
+                       FontSize="{StaticResource FontSizeRegular}"
+                       FontFamily="{StaticResource LatoBold}"
+                       Foreground="{StaticResource ForegroundMainBrush}"
+                       Margin="0 0 0 10"
+                       Padding="0"/>
+
+            <!--Client Fullname-->
+            <TextBlock Text="{Binding Name}"
+                       HorizontalAlignment="Center"
+                       FontSize="{StaticResource FontSizeSmall}"
+                       FontFamily="{StaticResource LatoRegular}"
+                       Foreground="{StaticResource ForegroundMainBrush}"
+                       Margin="0 0 0 10"
+                       TextWrapping="Wrap"/>
+
+            <!--Separator line-->
+            <Separator HorizontalAlignment="Stretch"
+                       Background="{StaticResource VeryLightGrayBrush}"
+                       Margin="5 0 5 10"
+                       Height="1"/>
+
+            <!--Client Address-->
+            <TextBlock Text="{Binding Address}"
+                       HorizontalAlignment="Center"
+                       FontSize="{StaticResource FontSizeSmall}"
+                       FontFamily="{StaticResource LatoRegular}"
+                       Foreground="{StaticResource ForegroundMainBrush}"
+                       Margin="0 0 0 10"
+                       TextWrapping="Wrap"/>
+        </StackPanel>
+    </Border>
+</UserControl>

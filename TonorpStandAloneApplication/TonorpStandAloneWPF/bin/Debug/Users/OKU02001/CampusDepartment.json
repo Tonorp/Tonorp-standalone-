@@ -1,0 +1,21 @@
+[{
+  "CampusDepartmentId": 1,
+  "DeptName": "Applied Biology and Biotechnology",
+  "DeptAlias": "ABB"
+}, {
+  "CampusDepartmentId": 2,
+  "DeptName": "Medicine and Surgery",
+  "DeptAlias": "MED"
+}, {
+  "CampusDepartmentId": 3,
+  "DeptName": "Software Engineering",
+  "DeptAlias": "SE"
+}, {
+  "CampusDepartmentId": 4,
+  "DeptName": "Computer Artificial Intelligence",
+  "DeptAlias": "CAE"
+}, {
+  "CampusDepartmentId": 5,
+  "DeptName": "Industrial Chemistry",
+  "DeptAlias": "IC"
+}]

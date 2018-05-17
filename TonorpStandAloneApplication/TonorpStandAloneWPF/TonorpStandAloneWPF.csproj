@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD1604DD-ADF8-4408-AFF6-8812B977FE8D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TonorpStandAloneWPF</RootNamespace>
+    <AssemblyName>TonorpStandAloneWPF</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ftrSDKHelper13, Version=4.3.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Futronic\SDK 4.5\Redist\x86\Net\Vs2013\ftrSDKHelper13.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\BaseProperties.cs" />
+    <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
+    <Compile Include="Logic\Bitmap2BitmapImage.cs" />
+    <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\Campuses.xaml.cs">
+      <DependentUpon>Campuses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChangeFingers.xaml.cs">
+      <DependentUpon>ChangeFingers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ContinueEnrollment.xaml.cs">
+      <DependentUpon>ContinueEnrollment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Dialogs\BaseWindowDialog.xaml.cs">
+      <DependentUpon>BaseWindowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EnrollmentType.xaml.cs">
+      <DependentUpon>EnrollmentType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewEnrollment.xaml.cs">
+      <DependentUpon>NewEnrollment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewEnrollmentOverlay.xaml.cs">
+      <DependentUpon>NewEnrollmentOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewEnrollmentParameters.xaml.cs">
+      <DependentUpon>NewEnrollmentParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewEnrollmentParametersStaff.xaml.cs">
+      <DependentUpon>NewEnrollmentParametersStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UploadStatus.xaml.cs">
+      <DependentUpon>UploadStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\YourActivity.xaml.cs">
+      <DependentUpon>YourActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CampusInfo.xaml.cs">
+      <DependentUpon>CampusInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CampusInfoList.xaml.cs">
+      <DependentUpon>CampusInfoList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserActivityInfo.xaml.cs">
+      <DependentUpon>UserActivityInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserActivityInfoList.xaml.cs">
+      <DependentUpon>UserActivityInfoList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValueConverter\ApplicationPageValueConverter.cs" />
+    <Compile Include="ValueConverter\BaseValueConverter.cs" />
+    <Compile Include="ValueConverter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ValueConverter\StringRGBToBrushConverter.cs" />
+    <Compile Include="ViewModel\WindowViewModel.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Animations\PageAnimationTypes.cs" />
+    <Compile Include="Animations\PageAnimations.cs" />
+    <Compile Include="Animations\StoryboardHelpers.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\Campuses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChangeFingers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ContinueEnrollment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Dialogs\BaseWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EnrollmentType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NewEnrollment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NewEnrollmentOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NewEnrollmentParameters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NewEnrollmentParametersStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UploadStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\YourActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Lines.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Texts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Windows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CampusInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CampusInfoList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserActivityInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserActivityInfoList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <None Include="Fonts\Lato-Black.eot" />
+    <Resource Include="Fonts\Lato-Black.ttf" />
+    <None Include="Fonts\Lato-Black.woff" />
+    <None Include="Fonts\Lato-Black.woff2" />
+    <None Include="Fonts\Lato-BlackItalic.eot" />
+    <Resource Include="Fonts\Lato-BlackItalic.ttf" />
+    <None Include="Fonts\Lato-BlackItalic.woff" />
+    <None Include="Fonts\Lato-BlackItalic.woff2" />
+    <None Include="Fonts\Lato-Bold.eot" />
+    <Resource Include="Fonts\Lato-Bold.ttf" />
+    <None Include="Fonts\Lato-Bold.woff" />
+    <None Include="Fonts\Lato-Bold.woff2" />
+    <None Include="Fonts\Lato-BoldItalic.eot" />
+    <Resource Include="Fonts\Lato-BoldItalic.ttf" />
+    <None Include="Fonts\Lato-BoldItalic.woff" />
+    <None Include="Fonts\Lato-BoldItalic.woff2" />
+    <None Include="Fonts\Lato-Hairline.eot" />
+    <Resource Include="Fonts\Lato-Hairline.ttf" />
+    <None Include="Fonts\Lato-Hairline.woff" />
+    <None Include="Fonts\Lato-Hairline.woff2" />
+    <None Include="Fonts\Lato-HairlineItalic.eot" />
+    <Resource Include="Fonts\Lato-HairlineItalic.ttf" />
+    <None Include="Fonts\Lato-HairlineItalic.woff" />
+    <None Include="Fonts\Lato-HairlineItalic.woff2" />
+    <None Include="Fonts\Lato-Heavy.eot" />
+    <Resource Include="Fonts\Lato-Heavy.ttf" />
+    <None Include="Fonts\Lato-Heavy.woff" />
+    <None Include="Fonts\Lato-Heavy.woff2" />
+    <None Include="Fonts\Lato-HeavyItalic.eot" />
+    <Resource Include="Fonts\Lato-HeavyItalic.ttf" />
+    <None Include="Fonts\Lato-HeavyItalic.woff" />
+    <None Include="Fonts\Lato-HeavyItalic.woff2" />
+    <None Include="Fonts\Lato-Italic.eot" />
+    <Resource Include="Fonts\Lato-Italic.ttf" />
+    <None Include="Fonts\Lato-Italic.woff" />
+    <None Include="Fonts\Lato-Italic.woff2" />
+    <None Include="Fonts\Lato-Light.eot" />
+    <Resource Include="Fonts\Lato-Light.ttf" />
+    <None Include="Fonts\Lato-Light.woff" />
+    <None Include="Fonts\Lato-Light.woff2" />
+    <None Include="Fonts\Lato-LightItalic.eot" />
+    <Resource Include="Fonts\Lato-LightItalic.ttf" />
+    <None Include="Fonts\Lato-LightItalic.woff" />
+    <None Include="Fonts\Lato-LightItalic.woff2" />
+    <None Include="Fonts\Lato-Medium.eot" />
+    <Resource Include="Fonts\Lato-Medium.ttf" />
+    <None Include="Fonts\Lato-Medium.woff" />
+    <None Include="Fonts\Lato-Medium.woff2" />
+    <None Include="Fonts\Lato-MediumItalic.eot" />
+    <Resource Include="Fonts\Lato-MediumItalic.ttf" />
+    <None Include="Fonts\Lato-MediumItalic.woff" />
+    <None Include="Fonts\Lato-MediumItalic.woff2" />
+    <None Include="Fonts\Lato-Regular.eot" />
+    <Resource Include="Fonts\Lato-Regular.ttf" />
+    <None Include="Fonts\Lato-Regular.woff" />
+    <None Include="Fonts\Lato-Regular.woff2" />
+    <None Include="Fonts\Lato-Semibold.eot" />
+    <Resource Include="Fonts\Lato-Semibold.ttf" />
+    <None Include="Fonts\Lato-Semibold.woff" />
+    <None Include="Fonts\Lato-Semibold.woff2" />
+    <None Include="Fonts\Lato-SemiboldItalic.eot" />
+    <Resource Include="Fonts\Lato-SemiboldItalic.ttf" />
+    <None Include="Fonts\Lato-SemiboldItalic.woff" />
+    <None Include="Fonts\Lato-SemiboldItalic.woff2" />
+    <None Include="Fonts\Lato-Thin.eot" />
+    <Resource Include="Fonts\Lato-Thin.ttf" />
+    <None Include="Fonts\Lato-Thin.woff" />
+    <None Include="Fonts\Lato-Thin.woff2" />
+    <None Include="Fonts\Lato-ThinItalic.eot" />
+    <Resource Include="Fonts\Lato-ThinItalic.ttf" />
+    <None Include="Fonts\Lato-ThinItalic.woff" />
+    <None Include="Fonts\Lato-ThinItalic.woff2" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomControls\" />
+    <Folder Include="Window\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TonorpStandAlone.Core\TonorpStandAlone.Core.csproj">
+      <Project>{aa9e5bfc-8b0b-46ca-8931-20a194e893d9}</Project>
+      <Name>TonorpStandAlone.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpLogoAndText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpLogoAndTextUnder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TeneceLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpBg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpIconDarkGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PersonIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\KeyIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LoggedInUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AssignedCampusesButtonImage.png" />
+    <Resource Include="Images\EnrollmentButtonImage.png" />
+    <Resource Include="Images\UploadStatusButtonImage.png" />
+    <Resource Include="Images\YourActivityButtonImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LockKey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SearchIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LockKeyIcon.png" />
+    <Resource Include="Images\LogoutIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LeftIndexImg.png" />
+    <Resource Include="Images\LeftMiddleImg.png" />
+    <Resource Include="Images\LeftPinkyImg.png" />
+    <Resource Include="Images\LeftRingImg.png" />
+    <Resource Include="Images\LeftThumbImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RightIndexImg.png" />
+    <Resource Include="Images\RightMiddleImg.png" />
+    <Resource Include="Images\RightPinkyImg.png" />
+    <Resource Include="Images\RightRingImg.png" />
+    <Resource Include="Images\RightThumbImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HandAndDevice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ChangeFingerIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HandAndDeviceInCircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpIconWhiteBg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TonorpIconGray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LogoutIconLightGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LockKeyIconLight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\StaffEnrollmentIcon.png" />
+    <Resource Include="Images\StudentEnrollmentIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AssignedCampusesButtonImageGray.png" />
+    <Resource Include="Images\EnrollmentButtonImageGray.png" />
+    <Resource Include="Images\UploadStatusButtonImageGray.png" />
+    <Resource Include="Images\YourActivityButtonImageGray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewEnrollmentIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\InfoIcon.png" />
+    <Resource Include="Images\InfoIconGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="EnvDTE">
+      <Guid>{80CC9F66-E7D8-4DDD-85B6-D9E6CD0E93E2}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VSLangProj">
+      <Guid>{49A1950E-3E35-4595-8CB9-920C64C44D67}</Guid>
+      <VersionMajor>7</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VSLangProj2">
+      <Guid>{7C0C4D36-0FA7-4840-B27C-166F91BC9E57}</Guid>
+      <VersionMajor>7</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fingerprint.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
